@@ -1,0 +1,1 @@
+[32mINFO    [0m root:test_calc.py:44 测试触发-异常情况 参数：(1, 0),预期结果：ZeroDivisionError
