@@ -11,22 +11,8 @@ from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-from h20_learn.appium_qiyewx1_test.pages.main_page import MainPage
-
 
 class TestAddMeber:
-
-    def setup_class(self):
-        self.main = MainPage()
-
-    @pytest.mark.parametrize('name,phone',
-                             [('李四1','19012330121'),('李四2','19012330122'),('李四3','19012330123')],
-                             ids=['账号李四1','账号李四2','账号李四3'])
-    def test_add_by_manual(self,name,phone):
-        """测试手动添加成员"""
-        self.main.goto_contact().goto_add_member().add_member_by_Manual().add_member(name,phone).get_toast()
-        self.main.driver.back() #返回通讯录页，继续添加账号
-
 
     @pytest.mark.parametrize('name,phone',
                              [('李四1', '19012330121'), ('李四2', '19012330122'), ('李四3', '19012330123')],
@@ -64,6 +50,6 @@ class TestAddMeber:
         # toast = (MobileBy.XPATH,'//*[class="android.widget.Toast"]')
         #toast定位 包含关键字
         toast = (MobileBy.XPATH,'//*[contains(@text,"添加成功")]')
-        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located(toast))
+        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located(toast))
         # WebDriverWait(driver, 10).until(lambda x: "添加成功" in x.page_source)
-        self.main.driver.back()  # 返回通讯录页
+        driver.back()  # 返回通讯录页
